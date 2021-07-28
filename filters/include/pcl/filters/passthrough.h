@@ -78,6 +78,7 @@ namespace pcl
     * \ingroup filters
     */
   template <typename PointT>
+  template <typename FilterT = float>  // default to float to keep existing functionality
   class PassThrough : public FilterIndices<PointT>
   {
     protected:
@@ -129,7 +130,7 @@ namespace pcl
         * \param[in] limit_max The maximum allowed field value (default = FLT_MAX).
         */
       inline void
-      setFilterLimits (const float &limit_min, const float &limit_max)
+      setFilterLimits (const FilterT &limit_min, const FilterT &limit_max)
       {
         filter_limit_min_ = limit_min;
         filter_limit_max_ = limit_max;
@@ -140,7 +141,7 @@ namespace pcl
         * \param[out] limit_max The maximum allowed field value (default = FLT_MAX).
         */
       inline void
-      getFilterLimits (float &limit_min, float &limit_max) const
+      getFilterLimits (FiltreT &limit_min, FilterT &limit_max) const
       {
         limit_min = filter_limit_min_;
         limit_max = filter_limit_max_;
@@ -210,10 +211,10 @@ namespace pcl
       std::string filter_field_name_;
 
       /** \brief The minimum allowed field value (default = FLT_MIN). */
-      float filter_limit_min_;
+      FilterT filter_limit_min_;
 
       /** \brief The maximum allowed field value (default = FLT_MIN). */
-      float filter_limit_max_;
+      FilterT filter_limit_max_;
   };
 
   ////////////////////////////////////////////////////////////////////////////////////////////
